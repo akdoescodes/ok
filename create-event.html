@@ -1,0 +1,151 @@
+<script>
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    const auth = getAuth();
+  
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = "login.html"; // Redirect if not logged in
+      }
+    });
+  </script>
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <link rel="stylesheet" href="create-event.css">  <!-- Only for this page -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Eventzz</div>
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./event-details.html">Events</a></li>
+            <li><a href="./create-event.html">Create Event</a></li>
+            <li><a href="./login.html">Login/Signup</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 🌟 Create Event Form -->
+    <div class="content">
+        <h1>📝 Create a New Event</h1>
+        <form class="event-form" id="event-form">
+            <label for="event-name">🎤 Event Name:</label>
+            <input type="text" id="event-name" placeholder="Enter event name" required>
+
+            <label for="event-desc">📝 Description:</label>
+            <textarea id="event-desc" placeholder="Enter event details" required></textarea>
+
+            <label for="event-date">📅 Date:</label>
+            <input type="date" id="event-date" required>
+            <label for="event-time">🕒 Time:</label>
+            <input type="time" id="event-time" placeholder = "Enter event time">
+
+            <label for="event-price">💰Entry Fee:</label>
+            <input type="text" id="event-price" placeholder="Enter price (Free or Amount)" required>
+            <label for="event-location">Event Location:</label>
+            <input type="text" id="event-location" placeholder="Enter event location" required>
+            
+
+            <label>👥 Event Type:</label>
+            <div class="event-type">
+                <label><input type="radio" name="event-type" value="Solo" checked> 🧑 Solo</label>
+                <label><input type="radio" name="event-type" value="Team"> 👥 Team</label>
+            </div>
+
+            <label for="team-size">👥 Team Size (If Team Event):</label>
+            <select id="team-size" style="display: none;">
+                <option value="">Select team size</option>
+                <option value="2">2 members</option>
+                <option value="3">3 members</option>
+                <option value="4">4 members</option>
+                <option value="5">5 members</option>
+                <option value="6">6 members</option>
+                <option value="7">7 members</option>
+                <option value="8">8 members</option>
+                <option value="9">9 members</option>
+                <option value="10">10 members</option>
+            </select>
+
+            <label for="event-category">📌 Select Category:</label>
+            <select id="event-category" required>
+                <option value="" disabled selected>Choose a category</option>
+                <optgroup label="🎭 Arts & Culture">
+                    <option value="Art">🎨 Art Exhibition</option>
+                    <option value="Theatre">🎭 Theatre & Drama</option>
+                    <option value="Poetry">🎤 Open Mic / Poetry Slam</option>
+                    <option value="Movie">🎬 Movie Screening</option>
+                    <option value="Photography">📸 Photography Contest</option>
+                </optgroup>
+                <optgroup label="🎶 Music & Dance">
+                    <option value="Music">🎵 Music Festival</option>
+                    <option value="Band">🎸 Battle of the Bands</option>
+                    <option value="Dance">💃 Dance Competition</option>
+                    <option value="DJ">🎧 DJ Night</option>
+                    <option value="Classical">🎻 Classical Music Night</option>
+                </optgroup>
+                <optgroup label="🏆 Competitions & Challenges">
+                    <option value="Debate">📖 Debate Competition</option>
+                    <option value="Quiz">🏅 Quiz / Trivia Contest</option>
+                    <option value="Hackathon">💻 Hackathon</option>
+                    <option value="Gaming">🎮 Gaming Tournament</option>
+                    <option value="Speech">🎤 Speech / Oratory Contest</option>
+                </optgroup>
+                <optgroup label="🏅 Sports & Fitness">
+                    <option value="Football">⚽ Football Tournament</option>
+                    <option value="Basketball">🏀 Basketball Tournament</option>
+                    <option value="Gym">🏋️ Gym & Fitness Challenge</option>
+                    <option value="Marathon">🏃 Marathon / Relay Race</option>
+                    <option value="Badminton">🏸 Badminton / Tennis Tournament</option>
+                </optgroup>
+                <optgroup label="📚 Academics & Learning">
+                    <option value="Workshop">🛠 Workshop / Skill Training</option>
+                    <option value="Seminar">📚 Seminar / Guest Lecture</option>
+                    <option value="Science">🧪 Science Fair</option>
+                    <option value="Research">🔬 Research Presentation</option>
+                    <option value="BookClub">📖 Book Club Meeting</option>
+                </optgroup>
+                <optgroup label="🌍 Community & Social Events">
+                    <option value="Food">🍔 Food Festival</option>
+                    <option value="Camp">🏕 Outdoor Camp / Adventure Trip</option>
+                    <option value="Networking">🤝 Networking & Social Meetup</option>
+                    <option value="Charity">🎗 Charity / Fundraiser</option>
+                    <option value="Environment">🌱 Environmental Awareness Drive</option>
+                </optgroup>
+            </select>
+
+            <label for="event-contact">Contact Info:</label>
+            <input type="text" id="event-contact" placeholder = "Gmail or phone number" required>
+            <label for="event-link">Please Input Your Event Form Link:</label>
+            <input type="text" id="event-link" placeholder = "Google or any other form link" required>
+            <button type="submit">🚀 Submit Event</button>
+        </form>
+    </div>
+
+    <!-- Event Cards Container -->
+    <div id="events-container">
+        <!-- Event cards will be injected here dynamically -->
+    </div>
+
+    <!-- Modal Window -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close-btn">✖</span>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    
+    <script src="create-event.js"></script>
+    <script src="navbar.js"></script>
+</body>
+</html>

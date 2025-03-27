@@ -1,0 +1,833 @@
+/* version backed up new 1 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Full-Screen Background */
+body {
+    opacity: 0;
+    transform: translateY(20px); /* Slight slide up effect */
+    animation: fadeInUp 1s ease-out forwards;
+    background-color: #000;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    display: -webkit-flex;
+display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Ensure every page uses full viewport width & height */
+html, body {
+    width: 100%;
+    min-height: 100vh;  
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: clamp(50px, 8vh, 70px);
+    display: -webkit-flex;
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 clamp(10px, 5vw, 40px);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Logo Styling */
+.logo {
+    font-size: clamp(10px, 6.25vw, 30px);
+    font-weight: bold;
+    color: white;
+}
+
+/* Navbar Links */
+.nav-links {
+    list-style: none;
+    display: -webkit-flex;
+display: flex;
+    gap: clamp(15px, 3vw, 30px);
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-size: clamp(14px, 4vw, 16px);
+    font-weight: bold;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Highlight active navbar tab */
+.nav-links a.active {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    position: relative;
+}
+
+/* Optional: Underline effect for active tab */
+.nav-links a.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    width: 50%;
+    height: 2px;
+    background: rgb(255, 255, 255);
+    transform: translateX(-50%);
+}
+
+/* Mobile Menu Button */
+.menu-toggle {
+    display: none;
+    position: absolute;
+    left: 90%;
+    position: absolute;
+    bottom: 94.99%;
+    
+    
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Content Container */
+.content {
+    width: 100%;
+    max-width: 1200px;
+    padding: clamp(10px, 5vw, 20px);
+    margin-top: clamp(70px, 15vh, 120px);
+    text-align: center;
+}
+
+/* Headline */
+h1 {
+    margin-top: clamp(10px, 4vw, 20px);
+    font-size: clamp(20px, 5vw, 28px);
+    text-transform: uppercase;
+}
+
+/* Search Container - Make it Responsive */
+.search-container {
+    width: clamp(280px, 90%, 500px);
+    display: -webkit-flex;
+display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(8px, 2vw, 10px);
+    border-radius: 12px;
+    border: 0px solid rgba(255, 255, 255, 0.5);
+    position: relative;
+    transition: border-color 0.3s ease-in-out;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10;
+    gap: clamp(8px, 2vw, 15px);
+    margin: 0 auto;
+}
+
+/* Dropdown */
+#category-filter {
+    flex: 1;
+    padding: clamp(8px, 2vw, 10px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: clamp(10px, 3vw, 12px);
+    background: transparent;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Apply Filters Button */
+#apply-filters {
+    padding: clamp(8px, 2vw, 10px);
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: clamp(10px, 3vw, 12px);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure spacing stays consistent */
+#category-filter, #apply-filters {
+    position: relative;
+    z-index: 20;
+    min-width: clamp(100px, 30%, 140px);
+}
+
+/* Button Hover Effect */
+#apply-filters:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* Button Active Effect */
+#apply-filters:active {
+    transform: scale(0.95);
+}
+
+/* Events Container - Responsive Grid */
+/* Events Container - Responsive Grid */
+/* Events Container - Responsive Grid */
+.events-container, #events-container {
+    display: -webkit-grid;
+display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Increased min width for better layout */
+    gap: clamp(25px, 4vw, 40px); /* More consistent gap */
+    padding: clamp(10px, 3vw, 20px);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 30px; /* Added top margin for better spacing */
+}
+
+/* Event Cards - Improved Responsive Design */
+.event-card {
+    position: relative;
+    width: 100%;
+    min-height: 220px; /* Consistent min-height */
+    background: rgba(10, 10, 10, 0.6); /* Slightly more visible background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    padding: clamp(20px, 5vw, 25px); /* More generous padding */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow by default */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: -webkit-flex;
+display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+/* Card Title Styling */
+.event-card h3 {
+    font-size: clamp(18px, 4vw, 20px);
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.3;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Text shadow for better readability */
+}
+
+/* Event Card Content */
+.event-card p {
+    font-size: clamp(14px, 3vw, 16px);
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+}
+
+/* Date and time styling */
+.event-date, .event-time {
+    font-size: clamp(13px, 2.8vw, 15px);
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Event Category Tag */
+.event-category {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* Different Glow Colors - More subtle by default, stronger on hover */
+.event-card:nth-child(3n + 1) {
+    box-shadow: 0 0 10px rgba(128, 0, 255, 0.3);
+    border-color: rgba(128, 0, 255, 0.3);
+}
+.event-card:nth-child(3n + 2) {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    border-color: rgba(0, 255, 0, 0.3);
+}
+.event-card:nth-child(3n + 3) {
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+    border-color: rgba(255, 165, 0, 0.3);
+}
+
+/* Enhanced Hover Effect */
+.event-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    z-index: 1;
+}
+
+.event-card:nth-child(3n + 1):hover {
+    box-shadow: 0 5px 20px rgba(128, 0, 255, 0.6);
+    border-color: rgba(128, 0, 255, 0.5);
+}
+.event-card:nth-child(3n + 2):hover {
+    box-shadow: 0 5px 20px rgba(0, 255, 0, 0.6);
+    border-color: rgba(0, 255, 0, 0.5);
+}
+.event-card:nth-child(3n + 3):hover {
+    box-shadow: 0 5px 20px rgba(255, 165, 0, 0.6);
+    border-color: rgba(255, 165, 0, 0.5);
+}
+
+/* Improved "View More" Button */
+.read-more-circle {
+    position: absolute;
+    bottom: 20px;
+    width: auto;
+    min-width: 110px;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 10px; /* Rounded button */
+    display: -webkit-flex;
+display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(10px);
+    visibility: hidden;
+}
+
+/* Text for view more button */
+.arrow-symbol {
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    transition: color 0.3s ease-in-out;
+}
+
+.arrow-symbol::after {
+    content: "View Details";
+}
+
+/* Improved animation for view more button appearance */
+.event-card:hover .read-more-circle {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Enhanced hover effect */
+.read-more-circle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .events-container, #events-container {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .event-card {
+        min-height: 200px;
+        padding: 15px;
+    }
+    
+    /* Always show view more button on mobile for better usability */
+    .read-more-circle {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Small screen optimization */
+@media (max-width: 480px) {
+    .events-container, #events-container {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+        padding: 10px;
+    }
+    
+    .event-card {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+}
+/* Fullscreen Modal - Responsive */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* When modal is active */
+.modal.show {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+/* Modal content with soft shadow and breathing effect */
+#modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    color: rgb(255, 255, 255);
+    padding: clamp(15px, 4vw, 25px);
+    border-radius: 12px;
+    max-width: clamp(280px, 90%, 550px);
+    width: 90%;
+    text-align: center;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.3);
+    animation: breathingEffect 2.5s infinite ease-in-out;
+}
+
+/* Keyframes for subtle breathing effect */
+@keyframes breathingEffect {
+    0% {
+        box-shadow: 0px 0px 7px 5px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0px 0px 7px 5px rgba(255, 255, 255, 0.35);
+    }
+    100% {
+        box-shadow: 0px 0px 7px 5px rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Modal Title */
+#modal-content h2 {
+    font-size: clamp(20px, 5vw, 26px);
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #f8f8f8;
+}
+
+/* Responsive Grid Layout for Modal Details */
+.modal-grid {
+    display: -webkit-grid;
+display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: clamp(8px, 2vw, 10px);
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+/* Grid Items */
+.modal-grid p {
+    background: rgba(255, 255, 255, 0.1);
+    padding: clamp(6px, 2vw, 8px) clamp(8px, 3vw, 12px);
+    border-radius: 8px;
+    font-size: clamp(13px, 3.5vw, 15px);
+    color: #ddd;
+}
+
+/* Full-Width Description */
+.full-width {
+    grid-column: 1 / -1;
+    text-align: left;
+    font-size: clamp(14px, 4vw, 16px);
+    color: #fff;
+}
+
+/* Register Button */
+#register-btn {
+    display: block !important;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color: white;
+    font-size: clamp(16px, 4vw, 18px);
+    font-weight: bold;
+    padding: clamp(10px, 3vw, 12px) clamp(15px, 4vw, 20px);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 20px auto 0;
+    transition: all 0.3s ease-in-out;
+    width: clamp(200px, 80%, 300px);
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#register-btn:hover {
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    box-shadow: 0px 0px 10px rgba(255, 75, 43, 0.8);
+    transform: scale(1.05);
+}
+
+/* Close button */
+#close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: clamp(20px, 6vw, 24px);
+    cursor: pointer;
+    color: white;
+    background: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* General Input & Select Field Styling */
+input, select {
+    width: 100%;
+    padding: clamp(8px, 2.5vw, 10px);
+    margin: 10px 0;
+    background: rgba(20, 20, 20, 0.9);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    outline: none;
+    font-size: clamp(14px, 4vw, 16px);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    -webkit-appearance: none;
+}
+
+/* Focus Effect for Inputs */
+input:focus, select:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.25);
+}
+
+/* Style Select (Dropdown) */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background: rgba(30, 30, 30, 0.86);
+    color: rgba(255, 255, 255, 0.8);
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 12px auto;
+    padding-right: 30px;
+}
+
+/* Style Date & Time Inputs */
+input[type="date"], input[type="time"] {
+    cursor: pointer;
+    background: rgba(25, 25, 25, 0.9);
+    color: rgba(255, 255, 255, 0.6);
+    padding: clamp(8px, 2.5vw, 10px);
+    border-radius: 5px;
+    -webkit-appearance: none;
+}
+
+/* Style Placeholder Text */
+input::placeholder, select::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Style Option Items in Dropdown */
+select option {
+    background: black;
+    color: white;
+}
+
+/* External spacing classes */
+.external-space {
+    margin-top: clamp(20px, 5vw, 30px);
+    margin-bottom: clamp(20px, 5vw, 30px);
+}
+
+.external-space1 {
+    margin-top: clamp(30px, 7vw, 40px);
+    margin-bottom: clamp(30px, 7vw, 40px);
+}
+
+/* Fix for scrollbar styling */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Generic Register Button */
+.register-btn {
+    display: block;
+    width: clamp(150px, 50%, 300px);
+    padding: clamp(10px, 2.5vw, 15px);
+    margin: clamp(15px, 4vw, 20px) auto;
+    background: rgba(255, 255, 255, 0.24);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    font-size: clamp(14px, 3.5vw, 18px);
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.register-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    /* Show mobile menu button */
+    .menu-toggle {
+        display: -webkit-flex;
+display: flex;
+    }
+    
+    /* Hide navigation links by default */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        z-index: 999;
+    }
+    
+    /* Show navigation links when active */
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        margin: 15px 0;
+    }
+    
+    /* Make search container stack vertically */
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #category-filter, #apply-filters {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    /* Adjust modal grid to single column */
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .full-width {
+        grid-column: 1;
+    }
+    
+    /* Ensure navbar doesn't overlap with content */
+    .content {
+        margin-top: clamp(60px, 15vh, 80px);
+    }
+}
+
+/* Animation for menu toggle (hamburger to X) */
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Add overlay when mobile menu is open */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    display: none;
+}
+
+.menu-overlay.active {
+    display: block;
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+    /* Fix for iOS 100vh issue */
+    .nav-links, .modal {
+        height: -webkit-fill-available;
+    }
+    
+    /* Fix for iOS input styling */
+    input, select, button {
+        -webkit-appearance: none;
+        border-radius: 0;
+    }
+    
+    /* Improve touch targets for iOS */
+    .nav-links a, #apply-filters, .read-more-circle, #register-btn, #close-modal {
+        padding: clamp(10px, 3vw, 15px);
+    }
+}
+
+/* Update the navbar structure to properly position elements */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: clamp(50px, 8vh, 70px);
+    display: -webkit-flex;
+display: flex;
+    justify-content: space-between; /* Space between logo and nav links */
+    align-items: center;
+    padding: 0 clamp(10px, 5vw, 40px);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Remove the nav-container and reposition elements directly in navbar */
+.logo {
+    font-size: clamp(10px, 6.25vw, 30px);
+    font-weight: bold;
+    color: white;
+    line-height: 1;
+}
+
+/* Position the hamburger menu to the right */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1001;
+    position: absolute; /* Position it absolutely within navbar */
+    right: clamp(10px, 5vw, 40px); /* Match navbar padding */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Perfect vertical centering */
+}
+
+/* Media query updates */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: -webkit-flex;
+display: flex;
+    }
+    
+    /* Hide navigation links by default on mobile */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        z-index: 999;
+    }
+    
+    /* Show navigation links when active */
+    .nav-links.active {
+        right: 0;
+    }
+}
+

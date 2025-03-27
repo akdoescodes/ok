@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="content">
+    <h2>Login</h2>
+    <input type="email" id="login-email" placeholder="Email">
+    <input type="password" id="login-password" placeholder="Password">
+    <button id="login-btn">Login</button>
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+  </div>
+
+  
+
+  <script type="module" src="auth.js"></script> <!-- Handles login logic -->
+  <script type="module" src="check-interests.js"></script> <!-- NEW: Checks if user has set interests -->
+  <script type="module" src="stars.js"></script>
+  <script src="navbar.js"></script>
+</body>
+</html>

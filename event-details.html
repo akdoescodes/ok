@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Eventzz</div>
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./Contact.html">Contact</a></li>
+            <li><a href="./about.html">About</a></li>
+           
+        </ul>
+    </nav>
+    
+    <div class="external-space1"></div>
+    <!-- Page Title -->
+    <h1>🎟 All Events</h1>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+        <label for="category-filter"></label>
+        <select id="category-filter">
+            <option value="all" selected>Show All Categories</option>
+            <optgroup label="🎭 Arts & Culture">
+                <option value="Art">🎨 Art Exhibition</option>
+                <option value="Theatre">🎭 Theatre & Drama</option>
+                <option value="Poetry">🎤 Open Mic / Poetry Slam</option>
+                <option value="Movie">🎬 Movie Screening</option>
+                <option value="Photography">📸 Photography Contest</option>
+            </optgroup>
+            <optgroup label="🎶 Music & Dance">
+                <option value="Music">🎵 Music Festival</option>
+                <option value="Band">🎸 Battle of the Bands</option>
+                <option value="Dance">💃 Dance Competition</option>
+                <option value="DJ">🎧 DJ Night</option>
+                <option value="Classical">🎻 Classical Music Night</option>
+            </optgroup>
+            <optgroup label="🏆 Competitions & Challenges">
+                <option value="Debate">📖 Debate Competition</option>
+                <option value="Quiz">🏅 Quiz / Trivia Contest</option>
+                <option value="Hackathon">💻 Hackathon</option>
+                <option value="Gaming">🎮 Gaming Tournament</option>
+                <option value="Speech">🎤 Speech / Oratory Contest</option>
+            </optgroup>
+            <optgroup label="🏅 Sports & Fitness">
+                <option value="Football">⚽ Football Tournament</option>
+                <option value="Basketball">🏀 Basketball Tournament</option>
+                <option value="Gym">🏋️ Gym & Fitness Challenge</option>
+                <option value="Marathon">🏃 Marathon / Relay Race</option>
+                <option value="Badminton">🏸 Badminton / Tennis Tournament</option>
+            </optgroup>
+            <optgroup label="📚 Academics & Learning">
+                <option value="Workshop">🛠 Workshop / Skill Training</option>
+                <option value="Seminar">📚 Seminar / Guest Lecture</option>
+                <option value="Science">🧪 Science Fair</option>
+                <option value="Research">🔬 Research Presentation</option>
+                <option value="BookClub">📖 Book Club Meeting</option>
+            </optgroup>
+            <optgroup label="🌍 Community & Social Events">
+                <option value="Food">🍔 Food Festival</option>
+                <option value="Camp">🏕 Outdoor Camp / Adventure Trip</option>
+                <option value="Networking">🤝 Networking & Social Meetup</option>
+                <option value="Charity">🎗 Charity / Fundraiser</option>
+                <option value="Environment">🌱 Environmental Awareness Drive</option>
+            </optgroup>
+        </select>
+        <button id="apply-filters">Apply Filters</button>
+    </div>
+
+    <!-- Event Container -->
+    <div id="event-container" class="event-container"></div>
+
+    <!-- Event Details Modal -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content" id="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2 id="modal-title">Event Title</h2>
+            <p id="modal-date">Date: </p>
+            <p id="modal-location">Location: </p>
+            <p id="modal-description">Description here...</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    
+    <script src="forsearch.js"></script>
+    <script src="display-events.js"></script>
+    <script src="modal.js"></script>
+    
+    <script src="navbar.js"></script>
+</body>
+</html>

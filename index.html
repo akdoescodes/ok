@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Events</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="home"> <!-- Added class 'home' to target only index.html -->
+    
+    <!-- 🚀 Full-Width Glassmorphism Navbar with new container structure -->
+    <nav class="navbar">
+        <!-- New container for logo and hamburger menu -->
+        <div class="nav-container">
+            <div class="logo">Eventzz</div>
+            <!-- Moved hamburger inside container -->
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            
+            <li><a href="./about.html">Contact/About</a></li>
+            
+        </ul>
+    </nav>
+    <script src="navbar.js"></script>
+    
+    <!-- Removed hamburger menu from here as it's now in the container -->
+    <div class="menu-overlay"></div>
+    <script src="mobile.js"></script>
+    
+    <!-- 🌟 Page Content -->
+    <div class="content">
+        <h1>Welcome to Campus Events</h1>
+        <p>Find and explore the best events happening at your campus!</p>
+    </div>
+    
+    <h1>Upcoming Events</h1>
+    
+    <!-- 🎟 Event Containers -->
+    <div class="events-container" id="eventsList"></div>
+    <div class="events-container" id="events-container"></div>
+    
+    <!-- 📌 Event Details Modal -->
+    <div class="modal">
+        <div id="modal-content"></div>
+    </div>
+    
+    <!-- ✅ Scripts -->
+    <script src="events.js"></script> <!-- Event handling -->
+    <script src="load-events.js"></script>
+    <script src="display-events.js"></script> <!-- Added without changing structure -->
+    
+    <canvas id="backgorundCanvas"></canvas>
+    <script src="stars.js"></script>
+    <script src="background.js"></script>
+    <script src="navbar.js"></script>
+</body>
+</html>

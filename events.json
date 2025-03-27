@@ -1,0 +1,41 @@
+[
+    {
+        "name": "Tech Hackathon",
+        "desc": "A coding competition for tech enthusiasts.",
+        "date": "2025-04-10",
+        "time": "10:00 AM",
+        "contact": "event@college.com",
+        "category": "Hackathon",
+        "location": "Main Hall",
+        "type": "Team",
+        "price": "Free",
+        "teamSize": "4 members",
+        "link": "https://example.com/register"
+    },
+    {
+        "name": "Photography Workshop",
+        "desc": "Learn professional photography techniques.",
+        "date": "2025-04-15",
+        "time": "2:00 PM",
+        "contact": "photo@college.com",
+        "category": "Photography",
+        "location": "Room 305",
+        "type": "Solo",
+        "price": "₹200",
+        "teamSize": "Solo",
+        "link": null
+    },
+    {
+        "name": "Photography Workshop",
+        "desc": "Learn professional photography techniques.",
+        "date": "2025-04-15",
+        "time": "2:00 PM",
+        "contact": "photo@college.com",
+        "category": "Photography",
+        "location": "Room 305",
+        "type": "Solo",
+        "price": "₹200",
+        "teamSize": "Solo",
+        "link": null
+    }
+]
